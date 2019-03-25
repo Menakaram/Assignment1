@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a, .aboutusli, .homeli {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.productsli, .careersli {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .aboutus:hover .aboutusli,.home:hover .homeli {
+  background-color: black;
+}
+
+.careers:hover .careersli,.products:hover .productsli {
+  background-color: black;
+}
+li.aboutus,li.home{
+  display: inline-block;
+}
+li.products,li.careers{
+  display: inline-block;
+}
+
+.aboutus-content,.home-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.products-content,.careers-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.aboutus-content a,.home-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.products-content a,.careers-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.aboutus-content a:hover, .home-content a:hover{background-color: #f1f1f1}
+.products-content a:hover, .careers-content a:hover{background-color: #f1f1f1}
+
+.aboutus:hover .aboutus-content,.home:hover .home-content {
+  display: block;
+}
+
+.products:hover .products-content,.careers:hover .careers-content {
+  display: block;
+}
+#products {
+height:250px;
+width:100%;
+text-align: center;
+}
+footer{
+bottom:0;
+}
+</style>
+</head>
+<body>
+<header>
+<ul>
+  <li class="home">
+    <a href="javascript:void(0)" class="homeli">Home</a>
+    <div class="home-content">
+      <a href="#">Business Objectives</a>
+      <a href="#">What we Offer</a>
+      <a href="#">Facts</a>
+      <a href="#">Customers & Partners</a>
+    </div>
+  </li>
+
+  <li class="aboutus">
+    <a href="javascript:void(0)" class="aboutusli">About Us</a>
+    <div class="aboutus-content">
+      <a href="#">Mission</a>
+      <a href="#">Vision</a>
+      <a href="#">Our Team</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </li>
+
+  <li class="products">
+    <a href="javascript:void(0)" class="productsli">Products</a>
+    <div class="products-content">
+      <a href="#products">Media Project Management</a>
+      <a href="#">MLR for Life Scinces</a>
+      <a href="#">Marketing & Communications</a>
+      <a href="#">Environment Health & Safety Frameworks</a>
+      <a href="#">Frameworks</a>
+    </div>
+  </li>
+  <li class="careers">
+    <a href="javascript:void(0)" class="careersli">Careers</a>
+    <div class="careers-content">
+      <a href="#">Why Acheron?</a>
+      <a href="#">What we look for</a>
+      <a href="#">Our Benefits & Perks</a>
+      <a href="#careers">Current Openings</a>
+    </div>
+  </li>
+</ul>
+</header>
+<div id="products" style="text-align:center;">
+<h1>Our Product Suite</h1>
+<h5>Our vision is to help our customer to achieve their goals.We truly work to provide Continuous Innovation and Customized Solutions.</h5>
+<div>
+<p>Acheron Media Project Management (MPM) is a comprehensive solution that is built on OpenText Media Management (OTMM) and OpenText AppWorks (Process Suite) to empower the marketing teams and project manager to manage all their creative workflow in one place - from initial request to delivery. It automates your Digital Media Project life cycle and delivers a holistic approach to the digital MPM by extending OTMM and Customer Experience Management with the intelligent BPM Engine.</p><a href="mpmform.html">MPM Release 16.5 Highlights</a>
+</div></div>
+<div id="careers">
+<div>
+<h1>Current Openings</h1><br><br>
+<h2>Assistant Project Manager</h2>
+<h3>Project Management</h3><h4>5-8 years</h4><a href="pro_manager.html">View Job</a>
+</div>
+<div>
+<h2>AWS Developerr</h2><br>
+<h3>Amazon Web Services Development</h3><h4>2-4 years</h4><a href="aws.html">View Job</a>
+</div>
+</div>
+<footer>
+Acheron Software ConsultancyPvt. Ltd. Copyright©2018, All Rights Reserved&nbsp;&nbsp;&nbsp;contact@acheron-tech.com
+</footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+[debug] [2019-03-25T06:00:49.217Z] ----------------------------------------------------------------------
+[debug] [2019-03-25T06:00:49.222Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2019-03-25T06:00:49.222Z] CLI Version:   6.5.0
+[debug] [2019-03-25T06:00:49.222Z] Platform:      linux
+[debug] [2019-03-25T06:00:49.222Z] Node Version:  v11.8.0
+[debug] [2019-03-25T06:00:49.223Z] Time:          Mon Mar 25 2019 11:30:49 GMT+0530 (India Standard Time)
+[debug] [2019-03-25T06:00:49.223Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-03-25T06:00:49.239Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-03-25T06:00:49.239Z] > authorizing via signed-in user
+[debug] [2019-03-25T06:00:49.240Z] [iam] checking project assignment-99f6e for permissions ["firebase.projects.get"]
+[debug] [2019-03-25T06:00:49.243Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/assignment-99f6e:testIamPermissions  
+
+[debug] [2019-03-25T06:00:53.128Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-25T06:00:53.132Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/assignment-99f6e  
+ 
+[debug] [2019-03-25T06:00:54.811Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/menaka/Assignment'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2019-03-25T06:01:00.026Z] Fetching environment
+[debug] [2019-03-25T06:01:00.044Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1075541919700:getServerAppConfig  
+ 
+[debug] [2019-03-25T06:01:00.047Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1075541919700/clients/_:getWebAppConfig  
+ 
+[debug] [2019-03-25T06:01:03.127Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-25T06:01:03.129Z] Starting @google-cloud/functions-emulator
+[debug] [2019-03-25T06:01:03.195Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2019-03-25T06:01:07.978Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
