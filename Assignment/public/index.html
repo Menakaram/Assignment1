@@ -32,8 +32,8 @@ Password:
   btnlogin.addEventListener('click',e=>{
     const Email = email.value;
     const Password = password.value;
-    const Auth = firebase.auth();
-    promise = Auth.SignInWithEmailAndPassword(Email,Password);
+    const auth = firebase.auth();
+    promise = auth.signInWithEmailAndPassword(Email,Password);
     promise.catch(e=>console.log(e.message));
   });
   btnsignup.addEventListener('click',e=>{
@@ -47,9 +47,14 @@ Password:
   });
   firebase.auth().onAuthStateChanged(user => {
   if(user) {
+    console.log('logging');
     window.location = 'home.html'; 
+  }else{
+    console.log('logout')
   }
 });
+</script>
+
 </script>
   </body>
 </html>
