@@ -23,7 +23,7 @@ li a, .aboutusli, .homeli {
   text-decoration: none;
 }
 
-.productsli, .careersli {
+.productsli, .careersli,.btnlogout {
   display: inline-block;
   color: white;
   text-align: center;
@@ -35,10 +35,10 @@ li a:hover, .aboutus:hover .aboutusli,.home:hover .homeli {
   background-color: black;
 }
 
-.careers:hover .careersli,.products:hover .productsli {
+.careers:hover .careersli,.products:hover .productsli,.btnlogout:hover {
   background-color: black;
 }
-li.aboutus,li.home{
+li.aboutus,li.home,li.btnlogout{
   display: inline-block;
 }
 li.products,li.careers{
@@ -69,6 +69,14 @@ li.products,li.careers{
   text-decoration: none;
   display: block;
   text-align: left;
+}
+
+.btn-logout {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: right;
 }
 
 .products-content a,.careers-content a {
@@ -140,6 +148,7 @@ bottom:0;
       <a href="#careers">Current Openings</a>
     </div>
   </li>
+  <li class="btnlogout" style="float:right;"><input type="submit" id="btnlogout" value="Logout"></li>
 </ul>
 </header>
 <div id="products" style="text-align:center;">
@@ -162,5 +171,32 @@ bottom:0;
 <footer>
 Acheron Software ConsultancyPvt. Ltd. Copyright©2018, All Rights Reserved&nbsp;&nbsp;&nbsp;contact@acheron-tech.com
 </footer>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD2qxByifwbSARxHTIb9N7kfwqlp7Po2fU",
+    authDomain: "assignment-99f6e.firebaseapp.com",
+    databaseURL: "https://assignment-99f6e.firebaseio.com",
+    projectId: "assignment-99f6e",
+    storageBucket: "assignment-99f6e.appspot.com",
+    messagingSenderId: "1075541919700"
+  };
+  firebase.initializeApp(config);
+
+  const btnlogout = document.getElementById('btnlogout');
+  firebase.auth().onAuthStateChanged(user => {
+  if(user) {
+    console.log('logged In'); 
+  }else{
+    console.log('logout');
+    window.location='index.html';
+  }
+  });
+  btnlogout.addEventListener('click',e=>{
+    firebase.auth().signOut();    
+  });
+</script>
+
 </body>
 </html>
