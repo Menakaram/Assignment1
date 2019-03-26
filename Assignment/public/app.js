@@ -47,7 +47,7 @@ function getInputVal(id){
 }
 
 // Save message to firebase
-function saveMessage(name, phone, email, altphone, degree, experience, role){
+function saveMessage(fname, lname, phone, email, company, country, interest, role){
   var newMessageRef = messagesRef.push();
   newMessageRef.set({
     fname:fname,
