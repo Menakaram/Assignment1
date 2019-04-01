@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Blog</title>
+    <meta http-equiv="content-language" content="en" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#navbar').load("header.html", function(){
+          $("#include").removeClass("hide");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <section class="container">
+      <h1>Create Your Post</h1>
+      <form id="postForm">
+        <label>Heading</label>
+        <input type="text" name="heading" id="heading" /><br>
+        <label>Category</label>
+        <select name="category" id="category">
+          <option value="technology">Technology</option>
+          <option value="science">Science</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="education">Education</option>
+          <option value="arts">Arts</option>
+        </select><br>
+        <label>Author Name</label>
+        <input type="text" name="author_name" id="author_name" /><br>
+        <label>Post Description</label><br>
+        <textarea name="description" id="description" rows="5"></textarea><br>
+        <label>Upload Img</label>
+        <input type="file" accept=".jpg,.jpeg,.png,.gif" name="img" id="img"><br><br>
+        <button type="submit">Add Post</button>
+      </form>
+    </section>
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+        <script>
+      var config = {
+        apiKey: "AIzaSyBAbxGA7GDKM30-ET3PrOLufj9s3pW6obE",
+        authDomain: "second-assignment-debf4.firebaseapp.com",
+        databaseURL: "https://second-assignment-debf4.firebaseio.com",
+        projectId: "second-assignment-debf4",
+        storageBucket: "second-assignment-debf4.appspot.com",
+        messagingSenderId: "384669237406"
+      };
+      firebase.initializeApp(config);
+      $(document).ready(function() {
+        var postsRef = firebase.database().ref();
+        document.getElementById('postForm').addEventListener('submit', submitForm);
+        function submitForm(e) {
+          e.preventDefault();
+          var heading = getInputVal('heading');
+          var category = getInputVal('category');
+          var author_name = getInputVal('author_name');
+          var description = getInputVal('description');
+          var date_created = firebase.database.ServerValue.TIMESTAMP;
+          var user = firebase.auth().currentUser.uid;
+
+          saveMessage(heading,category,author_name,description,date_created,user);
+          var head = heading
+          var storageRef = firebase.storage().ref(head.toString());
+          var file_data = $('#img').prop('files')[0];
+          storageRef.put(file_data);
+          document.getElementById('postForm').reset();
+        }
+        function getInputVal(id) {
+          return document.getElementById(id).value;
+        }
+        function saveMessage(heading, category, author_name, description, date_created, user) {
+          data_to_save = {
+            heading: heading,
+            category: category,
+            author_name: author_name,
+            description: description,
+            date_created: date_created,
+            user: user
+          };
+          postsRef.child("users/"+author_name).set(data_to_save);
+        }
+        $(document).on('click','#include #btnlogout',function(){
+          firebase.auth().signOut();
+        });
+        firebase.auth().onAuthStateChanged(user => {
+          if(user) {
+            console.log('logged In');
+          }
+          else {
+            console.log('Logout');
+            window.location='index.html';
+          }
+        });
+      });
+    </script>
+
+  </body>
+</html>
+       

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Blog</title>
+    <meta http-equiv="content-language" content="en" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#navbar').load("header.html", function(){
+          $("#include").removeClass("hide");
+        });
+      });
+    </script>
+    <script src="js/image.js"></script>
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <section class="container">
+      <h1>Posts</h1>
+      <a href='home.html'>Back to home</a><br>
+      <div id="edit" class="hide">
+        <input type="button" onclick="edit()" value="Edit any post"><edit-symbol img="images/edit.png"></edit-symbol>
+      </div>
+      <ul id="list-data" style="list-style-type:square;"></ul>
+      <div class="update"></div>
+      <div class="delete"></div>
+    </section>
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBAbxGA7GDKM30-ET3PrOLufj9s3pW6obE",
+        authDomain: "second-assignment-debf4.firebaseapp.com",
+        databaseURL: "https://second-assignment-debf4.firebaseio.com",
+        projectId: "second-assignment-debf4",
+        storageBucket: "second-assignment-debf4.appspot.com",
+        messagingSenderId: "384669237406"
+      };
+      firebase.initializeApp(config);
+      var messagesRef = firebase.database().ref('users/');
+      var storage = firebase.storage();
+      var storageRef = storage.ref();
+       messagesRef.orderByChild('category').equalTo('technology').on("value", function(snapshot) {
+        console.log(snapshot.val());
+        snapshot.forEach(function(data) {
+          var tangRef = storageRef.child(data.val().heading);
+          tangRef.getDownloadURL().then(function(url) {
+            var test = url;
+            document.querySelector('img').src = test;
+          });
+          $('#list-data').append("<img src="+ this.test +"width='100' height='100'>");
+          $('#list-data').append("<li>"+data.key+"</li>");
+          $('#list-data').append("<ol style='list-style-type:upper-roman;'>"+
+            "<li>Heading: "+data.val().heading+"</li>"+
+            "<li>Author Name: "+data.val().author_name+"</li>"+
+            "<li>Description: "+data.val().description+"</li>"+
+            "</ol>"
+          );
+        })
+      }) 
+      var postsRef = firebase.database().ref();
+      function submitForm() {
+        var heading = getInputVal('updheading');
+        var author_name = getInputVal('updauthor_name');
+        var description = getInputVal('upddescription');
+        var date_created = firebase.database.ServerValue.TIMESTAMP;
+        var user = firebase.auth().currentUser.uid;
+          
+        saveMessage(heading,author_name,description,date_created,user);
+        $('.update').addClass('hide');
+      }
+      function getInputVal(id) {
+        return document.getElementById(id).value;
+      }
+      function saveMessage(heading,author_name,description,date_created,user) {
+        data_to_save = {
+          heading: heading,
+          author_name: author_name,
+          description: description,
+          date_created: date_created,
+          user: user
+        };
+        postsRef.child("users/"+author_name).update(data_to_save);
+      }
+      $(document).ready(function() {
+        firebase.auth().onAuthStateChanged(user => {
+          if(user) {
+            console.log('logged In');
+            $('#edit').removeClass('hide');
+          }
+          else {
+            $('#include #btnlogout').addClass('hide'); 
+            console.log('Logout');
+          }
+        });
+        $(document).on('click','#include #btnlogout',function(){
+          firebase.auth().signOut();
+          window.location = 'index.html';
+        });
+      });
+      function edit() {
+        $('.update').append(
+          "<input type='text' name='updheading' /><br>"+
+          "<input type='text' name='updauthor_name' /><br>"+
+          "<input type='text' name='upddescription' id='upddescription' /><br>"+
+          "<input type='submit' id='updateForm' value='update' onclick='submitForm()'>"
+        );
+      }
+    </script>
+
+  </body>
+</html> 

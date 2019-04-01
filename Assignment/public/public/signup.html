@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Blog</title>
+    <meta http-equiv="content-language" cantent="en">
+    <meta name="viewport" content="width=device-width" />
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#navbar').load("header.html");
+      });
+    </script>
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <section class="container">
+      <div class="signup">
+        <h1>Sign Up</h1>
+        <p>
+          <input type="text" id="email" placeholder="Email Id">
+        </p>
+        <p>
+          <input type="password" id="password" placeholder="Password">
+        </p>
+        <p class="button">
+          <input type="submit" id="signup" value="Signup">
+        </p>
+      </div>
+    </section>
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+        <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBAbxGA7GDKM30-ET3PrOLufj9s3pW6obE",
+        authDomain: "second-assignment-debf4.firebaseapp.com",
+        databaseURL: "https://second-assignment-debf4.firebaseio.com",
+        projectId: "second-assignment-debf4",
+        storageBucket: "second-assignment-debf4.appspot.com",
+        messagingSenderId: "384669237406"
+      };
+      firebase.initializeApp(config);
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+      const btnsignup = document.getElementById('signup');
+      btnsignup.addEventListener('click',e => {
+        const Email = email.value;
+        const Password = password.value;
+        const Auth = firebase.auth();
+        const promise = Auth.createUserWithEmailAndPassword(Email,Password);
+        promise
+          .then(user=>console.log(user));
+        
+      });
+      firebase.auth().onAuthStateChanged(user => {
+        if(user) {
+          console.log('logging');
+          window.location = 'home.html'; 
+        } else{
+          console.log('logout')
+        }
+      });
+    </script>
+  </body>
+</html>
