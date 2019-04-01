@@ -28,6 +28,11 @@
       <div class="update"></div>
       <div class="delete"></div>
     </section>
+    <div class="footer">
+    <footer-info></footer-info>
+    </div>
+    <script src="js/check.js"></script>
+
     <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -104,9 +109,9 @@
       });
       function edit() {
         $('.update').append(
-          "<input type='text' name='updheading' /><br>"+
-          "<input type='text' name='updauthor_name' /><br>"+
-          "<input type='text' name='upddescription' id='upddescription' /><br>"+
+          "<input type='text' id='updheading' placeholder='Heading'/><br>"+
+          "<input type='text' id='updauthor_name' placeholder='Author Name' /><br>"+
+          "<input type='text' id='upddescription' id='upddescription' placeholder='Description' /><br>"+
           "<input type='submit' id='updateForm' value='update' onclick='submitForm()'>"
         );
       }

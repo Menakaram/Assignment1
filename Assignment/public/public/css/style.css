@@ -160,6 +160,14 @@ nav ul {
               padding-left: 20px;
               background: none; } }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  height: 25px;
+  background: #353535; }
+
 .mobile {
   display: none;
   margin: 0;
